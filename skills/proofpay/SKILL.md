@@ -1,6 +1,15 @@
 ---
 name: proofpay
 description: Create payment-gated invoices and release sealed deliverables.
+version: "0.1.0"
+author: augstentatious
+license: MIT
+category: tools
+tags:
+  - Community
+  - Solana
+  - Payments
+permissions: []
 ---
 
 # ProofPay

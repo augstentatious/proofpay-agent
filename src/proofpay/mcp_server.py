@@ -22,7 +22,12 @@ class ProofPayMcpApp:
         self.rpc = rpc
 
     def tools(self) -> list[types.Tool]:
-        invoice_id = {"type": "object", "properties": {"invoice_id": {"type": "string"}}, "required": ["invoice_id"]}
+        invoice_id = {
+            "type": "object",
+            "properties": {"invoice_id": {"type": "string"}},
+            "required": ["invoice_id"],
+            "additionalProperties": False,
+        }
         return [
             types.Tool(
                 name="create_invoice",
@@ -35,11 +40,12 @@ class ProofPayMcpApp:
                         "buyer_label": {"type": "string"},
                     },
                     "required": ["artifact_name", "amount", "buyer_label"],
+                    "additionalProperties": False,
                 },
             ),
             types.Tool(name="invoice_status", description="Poll finalized Solana evidence for one invoice.", inputSchema=invoice_id),
             types.Tool(
-                name="release_paid_artifact",
+                name="release_artifact",
                 description="Materialize a plaintext release only after exact finalized payment.",
                 inputSchema=invoice_id,
             ),
@@ -47,6 +53,16 @@ class ProofPayMcpApp:
 
     async def call(self, name: str, arguments: dict[str, Any]) -> types.CallToolResult:
         try:
+            allowed = {
+                "create_invoice": {"artifact_name", "amount", "buyer_label"},
+                "invoice_status": {"invoice_id"},
+                "release_artifact": {"invoice_id"},
+            }
+            if name not in allowed:
+                raise ProofPayError("unknown tool")
+            unexpected = set(arguments) - allowed[name]
+            if unexpected:
+                raise ProofPayError(f"unexpected arguments: {', '.join(sorted(unexpected))}")
             if name == "create_invoice":
                 result = self.service.create_invoice(**arguments).to_public_dict()
             elif name == "invoice_status":
@@ -54,7 +70,7 @@ class ProofPayMcpApp:
                 if self.rpc is not None:
                     self.service.poll_payment(invoice_id, self.rpc)
                 result = self.service.get_invoice(invoice_id).to_public_dict()
-            elif name == "release_paid_artifact":
+            elif name == "release_artifact":
                 result = self.service.release(arguments["invoice_id"]).to_public_dict()
             else:
                 raise ProofPayError("unknown tool")

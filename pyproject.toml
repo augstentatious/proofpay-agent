@@ -11,6 +11,7 @@ dependencies = ["cryptography>=42", "mcp>=1.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+devnet = ["solana==0.36.12"]
 
 [project.scripts]
 proofpay-mcp = "proofpay.mcp_server:main"

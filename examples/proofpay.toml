@@ -7,4 +7,5 @@ recipient = "REPLACE_WITH_SOLANA_RECIPIENT"
 token_mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 token_decimals = 6
 max_amount = "1000"
+max_inline_bytes = 32768
 rpc_url = "https://api.mainnet-beta.solana.com"

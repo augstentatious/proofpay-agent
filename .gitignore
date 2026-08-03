@@ -13,4 +13,5 @@ released/
 demo-output/
 .demo-runtime/
 .package-test/
+.devnet-runtime/
 proofpay.local.toml

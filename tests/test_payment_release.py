@@ -48,6 +48,7 @@ def test_release_is_blocked_until_exact_finalized_payment(service):
     released = service.release(invoice.invoice_id)
     assert released.path.read_bytes() == b"verified deliverable\n"
     assert released.sha256 == sha256(b"verified deliverable\n").hexdigest()
+    assert released.delivery_text == "verified deliverable\n"
     assert "key" not in released.to_public_dict()
 
 

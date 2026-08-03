@@ -20,7 +20,7 @@ async def _scenario(project: Path, config_path: Path):
             assert [tool.name for tool in tools.tools] == [
                 "create_invoice",
                 "invoice_status",
-                "release_paid_artifact",
+                "release_artifact",
             ]
             result = await session.call_tool(
                 "create_invoice",

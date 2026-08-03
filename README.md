@@ -8,7 +8,7 @@ The model never receives encryption keys and cannot choose the recipient, mint, 
 
 - `proofpay__create_invoice(artifact_name, amount, buyer_label?)`
 - `proofpay__invoice_status(invoice_id)`
-- `proofpay__release_artifact(invoice_id)`
+- `proofpay__release_artifact(invoice_id)` — writes the verified plaintext locally and returns paid UTF-8 content inline when it is within the operator cap.
 
 ## Payment rule
 
@@ -30,7 +30,7 @@ Run the test suite:
 .venv/bin/python -m pytest tests -q
 ```
 
-The stdio integration test launches the actual MCP subprocess, initializes a client session, lists the three tools, and creates an invoice. The production-shaped ZeroClaw receipt is in `docs/zeroclaw-v0.8.4-receipt.json`; the synthetic paid-release receipt is in `docs/demo-receipt.json`.
+The stdio integration test launches the actual MCP subprocess, initializes a client session, lists the three tools, and creates an invoice. The production-shaped ZeroClaw receipt is in `docs/zeroclaw-v0.8.4-receipt.json`; the labeled synthetic paid-release receipt is in `docs/demo-receipt.json`; the optional real-chain harness is documented in `docs/DEVNET_SMOKE.md`.
 
 ## ZeroClaw
 

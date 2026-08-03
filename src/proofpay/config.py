@@ -39,6 +39,7 @@ def load_runtime(path: Path) -> tuple[ProofPayService, SolanaRpc]:
             token_mint=str(table["token_mint"]),
             token_decimals=int(table["token_decimals"]),
             max_amount=Decimal(str(table["max_amount"])),
+            max_inline_bytes=int(table.get("max_inline_bytes", 32768)),
         )
     except (TypeError, ValueError, InvalidOperation) as exc:
         raise ProofPayError("invalid ProofPay config value") from exc

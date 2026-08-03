@@ -16,6 +16,8 @@ class ProofPayService:
     def __init__(self, config: ProofPayConfig):
         validate_pubkey(config.recipient)
         validate_pubkey(config.token_mint)
+        if not 0 <= config.max_inline_bytes <= 65536:
+            raise ProofPayError("max_inline_bytes must be between 0 and 65536")
         config.artifact_root.mkdir(parents=True, exist_ok=True)
         config.encrypted_root.mkdir(parents=True, exist_ok=True)
         config.release_root.mkdir(parents=True, exist_ok=True)
@@ -79,4 +81,15 @@ class ProofPayService:
         safe_name = Path(invoice.artifact_name).name
         path = self.config.release_root / f"{invoice_id}-{safe_name}"
         write_private(path, plaintext)
-        return ReleasedArtifact(invoice_id=invoice_id, path=path, sha256=digest(plaintext))
+        delivery_text = None
+        if len(plaintext) <= self.config.max_inline_bytes:
+            try:
+                delivery_text = plaintext.decode("utf-8")
+            except UnicodeDecodeError:
+                pass
+        return ReleasedArtifact(
+            invoice_id=invoice_id,
+            path=path,
+            sha256=digest(plaintext),
+            delivery_text=delivery_text,
+        )

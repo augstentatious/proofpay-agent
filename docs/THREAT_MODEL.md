@@ -30,7 +30,8 @@ Each invoice uses a random 256-bit key and 96-bit nonce. AES-GCM additional auth
 
 - Host compromise can expose the SQLite key column and released plaintext.
 - Public Solana RPC providers observe queries; self-hosted RPC reduces that disclosure.
-- The release directory is a local handoff, not an end-to-end buyer transport.
+- The release directory is a local handoff; paid UTF-8 artifacts up to the operator's `max_inline_bytes` cap are also returned to the model for channel delivery.
+- Binary or larger artifacts require a separate authenticated buyer-delivery transport.
 - Blockchain finality and RPC correctness remain external dependencies.
 - No refund, dispute, tax, sanctions, or buyer-authentication policy is implemented.
 

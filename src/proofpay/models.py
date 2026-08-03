@@ -20,6 +20,7 @@ class ProofPayConfig:
     token_mint: str
     token_decimals: int
     max_amount: Decimal
+    max_inline_bytes: int = 32768
 
 
 @dataclass(frozen=True)
@@ -58,6 +59,12 @@ class ReleasedArtifact:
     invoice_id: str
     path: Path
     sha256: str
+    delivery_text: str | None = None
 
-    def to_public_dict(self) -> dict[str, str]:
-        return {"invoice_id": self.invoice_id, "path": str(self.path), "sha256": self.sha256}
+    def to_public_dict(self) -> dict[str, str | None]:
+        return {
+            "invoice_id": self.invoice_id,
+            "path": str(self.path),
+            "sha256": self.sha256,
+            "delivery_text": self.delivery_text,
+        }
