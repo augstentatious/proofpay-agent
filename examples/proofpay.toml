@@ -1,0 +1,10 @@
+[proofpay]
+artifact_root = "/absolute/path/to/artifacts"
+encrypted_root = "/absolute/path/to/sealed"
+release_root = "/absolute/path/to/released"
+state_db = "/absolute/path/to/state/proofpay.sqlite3"
+recipient = "REPLACE_WITH_SOLANA_RECIPIENT"
+token_mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+token_decimals = 6
+max_amount = "1000"
+rpc_url = "https://api.mainnet-beta.solana.com"

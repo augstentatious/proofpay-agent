@@ -1,0 +1,15 @@
+{
+  "blocked_before_payment": true,
+  "ciphertext_sha256": "ab264bc11ba059fb7127e502ca4d075b2a57df33c94b804a6d860f9e9b5ee4c0",
+  "evidence": "synthetic fixture; no mainnet payment claimed",
+  "invoice_id": "01917fe5-4146-4bfe-aed5-69a351c23ac9",
+  "pay_uri": "solana:11111111111111111111111111111111?amount=12.5&spl-token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&reference=FRAiaNBMYXF9Xi19ddaqLGoCdQJuknqEYPLcjzyZ8qYC&label=ProofPay&message=Payment+releases+a+committed+digital+deliverable",
+  "payment_accepted": true,
+  "plaintext_sha256": "e926f712a3b1d57655c644fa6389140ac2b62afab13487d5956a78f5aa9b1ec3",
+  "released": {
+    "invoice_id": "01917fe5-4146-4bfe-aed5-69a351c23ac9",
+    "path": "/home/john/proofpay-workspace/proofpay/.demo-runtime/released/01917fe5-4146-4bfe-aed5-69a351c23ac9-analysis.md",
+    "sha256": "e926f712a3b1d57655c644fa6389140ac2b62afab13487d5956a78f5aa9b1ec3"
+  },
+  "released_text": "ProofPay verified deliverable\n"
+}

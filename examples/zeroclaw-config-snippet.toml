@@ -1,0 +1,19 @@
+# Merge into ~/.zeroclaw/config.toml and replace absolute paths.
+[mcp]
+enabled = true
+deferred_loading = false
+
+[[mcp.servers]]
+name = "proofpay"
+transport = "stdio"
+command = "/absolute/path/to/proofpay/.venv/bin/proofpay-mcp"
+args = ["--config", "/absolute/path/to/proofpay.toml"]
+tool_timeout_secs = 30
+
+[mcp_bundles.revenue]
+servers = ["proofpay"]
+exclude = []
+
+# Add "revenue" to the MCP bundles for the intended agent:
+# [agents.seller]
+# mcp_bundles = ["revenue"]

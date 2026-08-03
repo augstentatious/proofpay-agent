@@ -1,0 +1,20 @@
+{
+  "claim": "ZeroClaw-to-MCP invoice creation only; no mainnet payment claimed",
+  "zeroclaw_version": "0.8.4",
+  "agent": "seller",
+  "risk_level": "supervised",
+  "tool": "proofpay__create_invoice",
+  "arguments": {
+    "artifact_name": "showcase.md",
+    "amount": "12.50",
+    "buyer_label": "zeroclaw-showcase-final"
+  },
+  "invoice_id": "f1caed06-8383-493d-aca3-38cff60de7c0",
+  "status": "pending",
+  "ciphertext_sha256_returned": "ca461e3cff2601eec4f7c7449c618eb1e6dad29da0dd50c4830645fba386dbdc",
+  "ciphertext_sha256_on_disk": "ca461e3cff2601eec4f7c7449c618eb1e6dad29da0dd50c4830645fba386dbdc",
+  "database_row_present": true,
+  "plaintext_source_removed_after_commit": true,
+  "recipient": "11111111111111111111111111111111",
+  "recipient_note": "non-spendable demo placeholder"
+}
